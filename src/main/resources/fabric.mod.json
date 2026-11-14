@@ -1,0 +1,20 @@
+
+{
+  "schemaVersion": 1,
+  "id": "mdtt",
+  "version": "${version}",
+  "name": "Maldives TierTagger",
+  "description": "Minecraft PvP TierTagger client.",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.mdtt.client.MDTTClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
