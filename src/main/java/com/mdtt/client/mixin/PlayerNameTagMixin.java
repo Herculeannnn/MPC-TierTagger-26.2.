@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.world.phys.Vec3;
 import com.mojang.blaze3d.vertex.PoseStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,18 +24,17 @@ public class PlayerNameTagMixin {
             CameraRenderState cameraState,
             CallbackInfo ci
     ) {
-        if (state.playerName == null) {
+        if (state.scoreText == null) {
             return;
         }
 
-        String username = state.playerName.getString();
-
+        String username = state.scoreText.getString();
         var tierLabel = NameTagRenderer.getTierLabel(username);
 
-        if (tierLabel != null && !tierLabel.equals(net.minecraft.network.chat.Component.empty())) {
+        if (!tierLabel.getString().isEmpty()) {
             collector.submitNameTag(
                     poseStack,
-                    null,
+                    Vec3.ZERO,
                     10,
                     tierLabel,
                     false,
